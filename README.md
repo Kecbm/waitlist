@@ -3,6 +3,7 @@
 ## Backlog
 
 - Descrição de todas as vagas
+- Input de search positions em /jobs
 - Estilização
 - O que não tem na waitlist original
     - Campo email não padronizado entre home e página de detalhe de uma posição
