@@ -8,7 +8,7 @@
 - Deploy
 - Backend
 - Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
-
+- Toogle light/dark mode
 
 
 
