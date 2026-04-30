@@ -14,6 +14,9 @@
 - Toogle light/dark mode
 
 
+## Finalizar
+
+- Estudar como o projeto funciona em Qwik para poder apresentar, montar apresentação e por fim fazer a demo direto na url de deploy
 
 
 
