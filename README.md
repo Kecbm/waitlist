@@ -2,9 +2,9 @@
 
 ## Backlog
 
-- Descrição de todas as vagas
-- Input de search positions em /jobs
 - Estilização
+- Descrição de todas as vagas
+- Luiz Froes: qual a lib de icones?
 - O que não tem na waitlist original
     - Campo email não padronizado entre home e página de detalhe de uma posição
     - Confirmação visual de cadastro de email
