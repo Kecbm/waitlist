@@ -1,3 +1,22 @@
+# Waitlist
+
+## Backlog
+
+- O que não tem na waitlist original
+    - Confirmação visual de cadastro de emai
+    - Tela com texto de politica de privacidade
+- Deploy
+- Backend
+- Demo com os jogos já desenvolvidos
+
+
+
+
+
+
+
+
+
 # Qwik City App ⚡️
 
 - [Qwik Docs](https://qwik.dev/)
