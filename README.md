@@ -3,6 +3,12 @@
 ## Backlog
 
 - Estilização
+    - Cores gerais
+    - Letras
+    - Botões
+    - Detalhes (negrito, *)
+    - Hovers
+    - Icones
 - Descrição de todas as vagas
 - Luiz Froes: qual a lib de icones?
 - O que não tem na waitlist original
