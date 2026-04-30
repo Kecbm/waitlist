@@ -8,7 +8,8 @@
     - Botões
     - Detalhes (negrito, *)
     - Hovers
-    - Icones
+    - Icones da empresa
+    - Icones dos inputs
 - Descrição de todas as vagas
 - Luiz Froes: qual a lib de icones?
 - O que não tem na waitlist original
@@ -19,6 +20,7 @@
 - Backend
 - Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
 - Toogle light/dark mode
+- Botão que leva a aplicação para o usuário jogar jogos no modo demo
 
 
 ## Finalizar
