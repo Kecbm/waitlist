@@ -2,8 +2,11 @@
 
 ## Backlog
 
+- Descrição de todas as vagas
+- Estilização
 - O que não tem na waitlist original
-    - Confirmação visual de cadastro de emai
+    - Campo email não padronizado entre home e página de detalhe de uma posição
+    - Confirmação visual de cadastro de email
     - Tela com texto de politica de privacidade
 - Deploy
 - Backend
