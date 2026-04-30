@@ -13,6 +13,7 @@ export type Position = {
   location: string;
   intro: string[];
   sections: PositionSection[];
+  cardDescription?: string;
 };
 
 const SHARED_INTRO: string[] = [
@@ -534,6 +535,8 @@ const RAW: RawPosition[] = [
     title: "Blockchain / Crypto Engineer (Session-Based Settlement)",
     tag: "Engineering",
     intro: SHARED_INTRO,
+    cardDescription:
+      "influencers launch Rooms, run drops/missions, and monetize Originals built on top of certified game engines\u2014powered by an AI Host layer and programmable incentives designed for high-frequency sessions and measurable creator performance. This role helps us scale creator-led distribution, room economics, and session-velocity gameplay\u2014without compromising trust, compliance, or margin.",
     sections: [
       {
         heading: "Role Overview",
@@ -1001,6 +1004,8 @@ const RAW: RawPosition[] = [
     title: "Head of VIPs",
     tag: "Marketing",
     intro: SHARED_INTRO,
+    cardDescription:
+      "Role Overview We\u2019re hiring a Head of VIPs to build and run our VIP program end-to-end\u2014tiers, perks, retention playbooks, and high-touch service\u2014while protecting margin and keeping the experience premium.",
     sections: [
       {
         heading: "Role Overview",
