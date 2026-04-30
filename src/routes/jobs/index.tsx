@@ -24,7 +24,14 @@ export default component$(() => {
         </section>
         <section class="flex w-full max-w-3xl flex-col gap-4">
           {POSITIONS.map((p) => (
-            <JobCard key={p.slug} {...p} />
+            <JobCard
+              key={p.slug}
+              slug={p.slug}
+              title={p.title}
+              location={p.location}
+              tag={p.tag}
+              description={p.intro[0] ?? ""}
+            />
           ))}
         </section>
       </main>
