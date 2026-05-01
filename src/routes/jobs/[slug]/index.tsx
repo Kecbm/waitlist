@@ -12,7 +12,7 @@ export default component$(() => {
   if (!position) {
     return (
       <div class="flex min-h-screen flex-col">
-        <Header ctaLabel="Subscribe" ctaHref="/" />
+        <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} />
         <main class="flex flex-1 items-center justify-center px-4 py-8 text-center">
           <p>Position not found.</p>
         </main>
@@ -23,7 +23,7 @@ export default component$(() => {
 
   return (
     <div class="flex min-h-screen flex-col">
-      <Header ctaLabel="Subscribe" ctaHref="/" />
+      <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} />
       <main class="flex flex-1 flex-col items-center px-4 py-8 sm:px-8">
         <div class="grid w-full max-w-6xl gap-8 lg:grid-cols-3 lg:items-start">
           <article class="flex flex-col gap-6 lg:col-span-2">
