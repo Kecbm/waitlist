@@ -23,7 +23,7 @@ export default component$(() => {
 
   return (
     <div class="flex min-h-screen flex-col">
-      <Header ctaLabel="Subscribe" ctaHref="/" />
+      <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} />
       <main class="flex flex-1 flex-col items-center gap-10 px-4 py-8 sm:px-8">
         <section class="flex w-full max-w-3xl flex-col items-center gap-4 text-center">
           <h1 class="text-3xl font-medium sm:text-4xl">
