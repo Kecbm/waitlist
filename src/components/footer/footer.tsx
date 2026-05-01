@@ -5,7 +5,9 @@ export const Footer = component$(() => {
   return (
     <footer class="flex items-center justify-between gap-2 px-4 py-8 sm:px-8">
       <Logo size="sm" />
-      <p class="text-xs sm:text-sm">© 2026 Highstack. All rights reserved.</p>
+      <p class="font-body text-[16px] text-[#94979c]">
+        © 2026 Highstack. All rights reserved.
+      </p>
     </footer>
   );
 });
