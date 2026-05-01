@@ -3,10 +3,10 @@
 ## Backlog
 
 - Estilização
-    - Cores gerais
     - Letras
     - Botões
     - Detalhes (negrito, *)
+    - Espaçamentos
     - Hovers
     - Icones da empresa
     - Icones dos inputs
@@ -28,6 +28,10 @@
 - Estudar como o projeto funciona em Qwik para poder apresentar, montar apresentação e por fim fazer a demo direto na url de deploy
 
 
+## Desafios
+
+- Gradiente
+- Buscar fontes gratiutas parecidas com as pagas da waitlist original
 
 
 
