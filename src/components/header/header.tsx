@@ -16,7 +16,7 @@ export const Header = component$<HeaderProps>(
         </Link>
         <Link
           href={ctaHref}
-          class="rounded-full border px-3 py-1.5 text-sm sm:px-4 sm:py-2"
+          class="font-ui rounded-full border px-3 py-1.5 text-[14px] font-bold text-[#cecfd2] sm:px-4 sm:py-2"
         >
           {ctaLabel}
         </Link>
