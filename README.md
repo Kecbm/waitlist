@@ -3,24 +3,20 @@
 ## Backlog
 
 - Estilização
-    - Letras
-    - Botões
-    - Detalhes (negrito, *)
-    - Espaçamentos
-    - Hovers
-    - Icones da empresa
+    - Letras, botões, detalhes (negrito, *), espaçamentos e hovers
+        - Home
+        - /jobs
+        - /jobs/[slug]
+        - Privacy police
+        - Not found
     - Icones dos inputs
 - Descrição de todas as vagas
-- Luiz Froes: qual a lib de icones?
-- O que não tem na waitlist original
-    - Campo email não padronizado entre home e página de detalhe de uma posição
-    - Confirmação visual de cadastro de email
-    - Tela com texto de politica de privacidade
 - Deploy
 - Backend
 - Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
 - Toogle light/dark mode
 - Botão que leva a aplicação para o usuário jogar jogos no modo demo
+- Refatoração do projeto para padrões de qualidade
 
 
 ## Finalizar
@@ -28,11 +24,21 @@
 - Estudar como o projeto funciona em Qwik para poder apresentar, montar apresentação e por fim fazer a demo direto na url de deploy
 
 
+## Melhorias
+
+- O que não tem na waitlist original
+    - Redes sociais da empresa no Footer (LinkedIn: https://www.linkedin.com/company/highstackcasino/)
+    - Campo email não padronizado entre home e página de detalhe de uma posição
+    - Confirmação visual de cadastro de email
+    - Tela com texto de politica de privacidade
+    - Tela de not found
+
+
 ## Desafios
 
 - Gradiente
-- Buscar fontes gratiutas parecidas com as pagas da waitlist original
-
+- Buscar fontes gratuitas parecidas com as pagas da waitlist original
+- Botão open positions
 
 
 
