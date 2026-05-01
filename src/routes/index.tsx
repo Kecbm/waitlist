@@ -35,8 +35,10 @@ export default component$(() => {
       <main class="flex flex-1 items-center justify-center px-4 py-8 sm:px-8">
         <section class="flex w-full max-w-md flex-col items-center gap-4 text-center sm:gap-5">
           <Logo size="xl" />
-          <h1 class="text-xl font-medium sm:text-2xl">The Creator Casino.</h1>
-          <p class="text-base sm:text-lg">Coming soon.</p>
+          <h1 class="font-display text-[48px] font-bold whitespace-nowrap text-[#ffffff]">
+            The Creator Casino.
+          </h1>
+          <p class="font-body text-[20px] text-[#94979c]">Coming soon.</p>
           <form
             onSubmit$={handleSubmit}
             preventdefault:submit
@@ -54,7 +56,7 @@ export default component$(() => {
               />
               <button
                 type="submit"
-                class="rounded-full border px-4 py-2.5 text-sm font-medium sm:px-5 sm:py-3"
+                class="font-ui rounded-full bg-[#6938ef] px-4 py-2.5 text-[16px] font-medium text-[#ffffff]"
               >
                 Get notified
               </button>
@@ -65,7 +67,7 @@ export default component$(() => {
               </p>
             )}
           </form>
-          <p class="text-xs sm:text-sm">
+          <p class="font-ui text-[14px] text-[#94979c]">
             We care about your data. See our{" "}
             <Link href="/privacy-policy" class="underline">
               Privacy Policy.
