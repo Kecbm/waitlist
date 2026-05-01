@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Geist", system-ui, sans-serif;
+  --font-ui: ui-sans-serif, system-ui, sans-serif;
+}
 
 body {
   min-height: 100vh;
