@@ -5,18 +5,37 @@
   --font-display: "Inter", system-ui, sans-serif;
   --font-body: "Geist", system-ui, sans-serif;
   --font-ui: ui-sans-serif, system-ui, sans-serif;
+  --color-border-primary: #373a41;
+  --color-text-placeholder: #85888e;
+  --radius-md: 0.5rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  a {
+    cursor: pointer;
+  }
+}
+
+:root {
+  --page-gradient:
+    radial-gradient(
+      ellipse 50% 60% at top,
+      #0d0f15 0%,
+      #0d0f15 35%,
+      #121522 75%,
+      transparent 130%
+    ),
+    radial-gradient(ellipse at center, #0d0f15 0%, #262049 90%);
 }
 
 body {
   min-height: 100vh;
-  background-image:
-    radial-gradient(
-      ellipse 55% 65% at top,
-      #0d0f15 0%,
-      #0d0f15 30%,
-      #121522 75%,
-      transparent 120%
-    ),
-    radial-gradient(ellipse at center, #0d0f15 0%, #262049 90%);
+  background-image: var(--page-gradient);
   background-attachment: fixed;
+}
+
+.bg-page-gradient {
+  background-image: var(--page-gradient);
 }
