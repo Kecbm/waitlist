@@ -1,5 +1,12 @@
 export type LabeledItem = { label?: string; text: string };
 
+export const TAG_COLORS: Record<string, string> = {
+  Product: "bg-[#27115f] text-[#bdb4fe] border-[1.5px] border-[#4a1fb8]",
+  Engineering: "bg-[#27115f] text-[#bdb4fe] border-[1.5px] border-[#4a1fb8]",
+  Marketing: "bg-[#4e0d30] text-[#faa7e0] border-[1.5px] border-[#9e165f]",
+  "AI & Data": "bg-[#4e1d09] text-[#fec84b] border-[1.5px] border-[#93370d]",
+};
+
 export type PositionSection = {
   heading: string;
   paragraphs?: string[];
