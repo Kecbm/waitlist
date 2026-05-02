@@ -3,14 +3,12 @@
 ## Backlog
 
 - Estilização
-    - Letras, botões, detalhes (negrito, *), espaçamentos e hovers
-        - Home
-        - /jobs
-        - /jobs/[slug]
-        - Privacy police
-        - Not found
-    - Aprimorar estilização com: inspecionar > computed
-    - Icones dos inputs
+    - Home
+    - /jobs
+    - /jobs/[slug]
+    - Privacy police
+    - Not found
+        - Aprimorar com: inspecionar > computed
 - Descrição de todas as vagas
 - Deploy
 - Backend
@@ -18,6 +16,7 @@
 - Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
 - Toogle light/dark mode
 - Botão que leva a aplicação para o usuário jogar jogos no modo demo
+- Validar páginas no mobile
 - Refatoração do projeto para padrões de qualidade
 
 
