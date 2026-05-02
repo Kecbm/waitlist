@@ -1,5 +1,5 @@
 import { component$, useComputed$, useSignal } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { useLocation, useNavigate, type DocumentHead } from "@builder.io/qwik-city";
 import { LuSearch } from "@qwikest/icons/lucide";
 import { Header } from "../../components/header/header";
 import { Footer } from "../../components/footer/footer";
@@ -11,8 +11,14 @@ const TAGS = ["All", "Product", "Engineering", "Marketing", "AI & Data"] as cons
 type TagFilter = (typeof TAGS)[number];
 
 export default component$(() => {
-  const search = useSignal("");
-  const activeTag = useSignal<TagFilter>("All");
+  const loc = useLocation();
+  const nav = useNavigate();
+  const initialTag = (loc.url.searchParams.get("tag") ?? "All") as TagFilter;
+  const initialQuery = loc.url.searchParams.get("q") ?? "";
+  const search = useSignal(initialQuery);
+  const activeTag = useSignal<TagFilter>(
+    (TAGS as readonly string[]).includes(initialTag) ? initialTag : "All",
+  );
 
   const filtered = useComputed$(() => {
     const query = search.value.toLowerCase().trim();
@@ -53,7 +59,13 @@ export default component$(() => {
                 placeholder="Search positions..."
                 aria-label="Search positions"
                 value={search.value}
-                onInput$={(_, el) => (search.value = el.value)}
+                onInput$={(_, el) => {
+                  search.value = el.value;
+                  const url = new URL(window.location.href);
+                  if (el.value) url.searchParams.set("q", el.value);
+                  else url.searchParams.delete("q");
+                  nav(url.pathname + url.search, { replaceState: true });
+                }}
                 class="border-border-primary placeholder:text-text-placeholder h-11.5 w-full rounded-md border bg-[#0c0e12] py-2.5 pr-3.5 pl-14.75 text-[16px] text-white transition-colors focus:border-2 focus:border-[#7d70cc] focus:outline-none"
               />
             </div>
@@ -63,7 +75,13 @@ export default component$(() => {
                   key={t}
                   type="button"
                   aria-pressed={activeTag.value === t}
-                  onClick$={() => (activeTag.value = t)}
+                  onClick$={() => {
+                    activeTag.value = t;
+                    const url = new URL(window.location.href);
+                    if (t === "All") url.searchParams.delete("tag");
+                    else url.searchParams.set("tag", t);
+                    nav(url.pathname + url.search, { replaceState: true });
+                  }}
                   class={`font-ui inline-flex h-7.5 items-center rounded-full border-2 bg-[#0c0e12] px-3 py-1 text-[14px] font-semibold text-white transition-colors ${
                     activeTag.value === t
                       ? "border-[#7d70cc]"
