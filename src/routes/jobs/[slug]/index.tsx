@@ -3,6 +3,7 @@ import { Link, useLocation, type DocumentHead } from "@builder.io/qwik-city";
 import { Header } from "../../../components/header/header";
 import { Footer } from "../../../components/footer/footer";
 import { ApplyForm } from "../../../components/apply-form/apply-form";
+import { PageMain } from "../../../components/page-main/page-main";
 import { findPositionBySlug } from "../../../data/positions";
 
 export default component$(() => {
@@ -12,10 +13,10 @@ export default component$(() => {
   if (!position) {
     return (
       <div class="flex min-h-screen flex-col">
-        <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} />
-        <main class="flex flex-1 items-center justify-center px-4 py-8 text-center">
+        <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} ctaVariant="primary" />
+        <PageMain class="items-center justify-center text-center px-20! py-24! min-h-473">
           <p>Position not found.</p>
-        </main>
+        </PageMain>
         <Footer />
       </div>
     );
@@ -23,8 +24,8 @@ export default component$(() => {
 
   return (
     <div class="flex min-h-screen flex-col">
-      <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} />
-      <main class="flex flex-1 flex-col items-center px-4 py-8 sm:px-8">
+      <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} ctaVariant="primary" />
+      <PageMain class="flex-col items-center px-20! py-24! min-h-473">
         <div class="grid w-full max-w-6xl gap-8 lg:grid-cols-3 lg:items-start">
           <article class="flex flex-col gap-6 lg:col-span-2">
             <Link
@@ -71,7 +72,7 @@ export default component$(() => {
             <ApplyForm />
           </div>
         </div>
-      </main>
+      </PageMain>
       <Footer />
     </div>
   );
