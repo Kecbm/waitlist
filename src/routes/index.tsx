@@ -1,28 +1,69 @@
 import { $, component$, useSignal } from "@builder.io/qwik";
-import { Link, type DocumentHead } from "@builder.io/qwik-city";
+import {
+  Link,
+  routeAction$,
+  z,
+  zod$,
+  type DocumentHead,
+} from "@builder.io/qwik-city";
 import { LuMail, LuX } from "@qwikest/icons/lucide";
 import { Header } from "../components/header/header";
 import { Footer } from "../components/footer/footer";
 import { Logo } from "../components/logo/logo";
 import { PageMain } from "../components/page-main/page-main";
+import { getSupabase } from "../lib/supabase";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const AUTO_CLOSE_MS = 15000;
 
+export const useSubscribeWaitlist = routeAction$(
+  async (data, { fail, env }) => {
+    const supabase = getSupabase(env);
+    const { error } = await supabase
+      .from("waitlist_signups")
+      .insert({ email: data.email });
+
+    if (error?.code === "23505") {
+      return fail(409, {
+        message: "This email is already on the waitlist.",
+      });
+    }
+    if (error) {
+      return fail(500, {
+        message: "Something went wrong. Please try again.",
+      });
+    }
+    return { ok: true };
+  },
+  zod$({
+    email: z.string().email(),
+  }),
+);
+
 export default component$(() => {
+  const subscribe = useSubscribeWaitlist();
   const email = useSignal("");
   const error = useSignal("");
   const submittedEmail = useSignal("");
   const dialogRef = useSignal<HTMLDialogElement>();
   const closeTimeoutId = useSignal<number>();
 
-  const handleSubmit = $(() => {
+  const handleSubmit = $(async () => {
     const value = email.value.trim();
     if (!EMAIL_REGEX.test(value)) {
       error.value = "Please enter a valid email address.";
       return;
     }
     error.value = "";
+
+    const { value: result } = await subscribe.submit({ email: value });
+    if (result.failed) {
+      error.value =
+        (result as { message?: string }).message ??
+        "Something went wrong. Please try again.";
+      return;
+    }
+
     submittedEmail.value = value;
     dialogRef.value?.showModal();
     if (closeTimeoutId.value !== undefined) {
@@ -78,7 +119,8 @@ export default component$(() => {
               </div>
               <button
                 type="submit"
-                class="font-ui rounded-full bg-[#6938ef] px-4 py-2.5 text-[16px] font-medium text-[#ffffff] transition-colors hover:bg-[#7b5bf8]"
+                disabled={subscribe.isRunning}
+                class="font-ui rounded-full bg-[#6938ef] px-4 py-2.5 text-[16px] font-medium text-[#ffffff] transition-colors hover:bg-[#7b5bf8] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Get notified
               </button>
