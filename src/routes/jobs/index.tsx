@@ -1,8 +1,10 @@
 import { component$, useComputed$, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { LuSearch } from "@qwikest/icons/lucide";
 import { Header } from "../../components/header/header";
 import { Footer } from "../../components/footer/footer";
 import { JobCard } from "../../components/job-card/job-card";
+import { PageMain } from "../../components/page-main/page-main";
 import { POSITIONS } from "../../data/positions";
 
 const TAGS = ["All", "Product", "Engineering", "Marketing", "AI & Data"] as const;
@@ -23,63 +25,75 @@ export default component$(() => {
 
   return (
     <div class="flex min-h-screen flex-col">
-      <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} />
-      <main class="flex flex-1 flex-col items-center gap-10 px-4 py-8 sm:px-8">
-        <section class="flex w-full max-w-3xl flex-col items-center gap-4 text-center">
-          <h1 class="text-3xl font-medium sm:text-4xl">
-            Build the Future of Entertainments
-          </h1>
-          <p class="text-base sm:text-lg">
-            Join a team redefining what&apos;s possible at the intersection of
-            AI, gaming, and culture.
-          </p>
-          <p class="text-base sm:text-lg">
-            We&apos;re building experiences for millions.
-          </p>
-        </section>
-        <section class="flex w-full max-w-3xl flex-col gap-4">
-          <input
-            type="text"
-            placeholder="Search positions..."
-            aria-label="Search positions"
-            value={search.value}
-            onInput$={(_, el) => (search.value = el.value)}
-            class="w-full rounded-full border px-4 py-2 text-sm"
-          />
-          <div class="flex flex-wrap gap-2">
-            {TAGS.map((t) => (
-              <button
-                key={t}
-                type="button"
-                aria-pressed={activeTag.value === t}
-                onClick$={() => (activeTag.value = t)}
-                class={`rounded-full px-3 py-1 text-xs sm:text-sm ${
-                  activeTag.value === t ? "border-2 font-medium" : "border"
-                }`}
+      <Header ctaLabel="Subscribe" ctaHref="/" showCtaArrow={false} ctaVariant="primary" />
+      <PageMain class="flex-col items-center">
+        <div class="flex w-full max-w-3xl flex-col gap-10">
+          <section class="flex flex-col items-center gap-4 text-center">
+            <h1 class="font-display flex h-30 w-full flex-col items-center justify-center text-[48px] font-medium text-[#f7f7f7]">
+              <span>Build the Future of</span>
+              <span>Entertainments</span>
+            </h1>
+            <p class="font-body flex min-h-7.5 w-full items-center justify-center text-[20px] whitespace-nowrap text-[#94979c]">
+              Join a team redefining what&apos;s possible at the intersection of AI, gaming, and culture.
+            </p>
+            <p class="font-body flex min-h-7.5 w-full max-w-[696.91px] items-center justify-center text-[20px] text-[#94979c]">
+              We&apos;re building experiences for millions.
+            </p>
+          </section>
+          <section class="flex flex-col gap-4">
+            <div class="relative w-full">
+              <span
+                class="text-text-placeholder pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2"
+                style={{ fontSize: "20px" }}
               >
-                {t}
-              </button>
-            ))}
-          </div>
-          <p class="text-sm">{filtered.value.length} open position(s)</p>
-        </section>
-        <section class="flex w-full max-w-3xl flex-col gap-4">
-          {filtered.value.length === 0 ? (
-            <p class="text-sm">No positions found.</p>
-          ) : (
-            filtered.value.map((p) => (
-              <JobCard
-                key={p.slug}
-                slug={p.slug}
-                title={p.title}
-                location={p.location}
-                tag={p.tag}
-                description={p.cardDescription ?? p.intro[0] ?? ""}
+                <LuSearch />
+              </span>
+              <input
+                type="text"
+                placeholder="Search positions..."
+                aria-label="Search positions"
+                value={search.value}
+                onInput$={(_, el) => (search.value = el.value)}
+                class="border-border-primary placeholder:text-text-placeholder h-11.5 w-full rounded-md border bg-[#0c0e12] py-2.5 pr-3.5 pl-14.75 text-[16px] text-white transition-colors focus:border-2 focus:border-[#7d70cc] focus:outline-none"
               />
-            ))
-          )}
-        </section>
-      </main>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {TAGS.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  aria-pressed={activeTag.value === t}
+                  onClick$={() => (activeTag.value = t)}
+                  class={`font-ui inline-flex h-7.5 items-center rounded-full border-2 bg-[#0c0e12] px-3 py-1 text-[14px] font-semibold text-white transition-colors ${
+                    activeTag.value === t
+                      ? "border-[#7d70cc]"
+                      : "border-border-primary hover:border-[#7d70cc]"
+                  }`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+            <p class="text-text-placeholder text-sm">{filtered.value.length} open position(s)</p>
+          </section>
+          <section class="flex flex-col gap-4">
+            {filtered.value.length === 0 ? (
+              <p class="text-sm">No positions found.</p>
+            ) : (
+              filtered.value.map((p) => (
+                <JobCard
+                  key={p.slug}
+                  slug={p.slug}
+                  title={p.title}
+                  location={p.location}
+                  tag={p.tag}
+                  description={p.cardDescription ?? p.intro[0] ?? ""}
+                />
+              ))
+            )}
+          </section>
+        </div>
+      </PageMain>
       <Footer />
     </div>
   );
