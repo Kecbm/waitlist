@@ -7,6 +7,7 @@ type HeaderProps = {
   ctaLabel?: string;
   ctaHref?: string;
   showCtaArrow?: boolean;
+  ctaVariant?: "default" | "primary";
 };
 
 export const Header = component$<HeaderProps>(
@@ -14,7 +15,12 @@ export const Header = component$<HeaderProps>(
     ctaLabel = "Open positions",
     ctaHref = "/jobs",
     showCtaArrow = true,
+    ctaVariant = "default",
   }) => {
+    const variantClass =
+      ctaVariant === "primary"
+        ? "h-10 w-[94.52px] bg-[#6938ef] text-[#ffffff] border-transparent hover:bg-[#7b5bf8]"
+        : "h-10.5 w-[149.38px] bg-[#22262f] text-[#cecfd2] border-transparent hover:border-[#303139] hover:bg-[#393a42]";
     return (
       <header class="flex items-center justify-between px-4 py-4 sm:px-8 sm:py-6">
         <Link href="/" aria-label="Highstack home">
@@ -22,7 +28,7 @@ export const Header = component$<HeaderProps>(
         </Link>
         <Link
           href={ctaHref}
-          class="font-ui flex h-10.5 w-[149.38px] items-center justify-center gap-1.5 rounded-full border border-transparent bg-[#22262f] px-3.5 py-2.5 text-[14px] font-semibold whitespace-nowrap text-[#cecfd2] transition-colors hover:border-[#303139] hover:bg-[#393a42]"
+          class={`font-ui flex items-center justify-center gap-1.5 rounded-full border px-3.5 py-2.5 text-[14px] font-semibold whitespace-nowrap transition-colors ${variantClass}`}
         >
           {ctaLabel}
           {showCtaArrow && <LuArrowRight />}
