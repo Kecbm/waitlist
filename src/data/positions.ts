@@ -1108,7 +1108,7 @@ const RAW: RawPosition[] = [
 
 export const POSITIONS: Position[] = RAW.map((p) => ({
   ...p,
-  location: "remote",
+  location: "Remote",
   slug: slugify(p.title),
 }));
 
