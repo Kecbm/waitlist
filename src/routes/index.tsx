@@ -4,6 +4,7 @@ import { LuMail, LuX } from "@qwikest/icons/lucide";
 import { Header } from "../components/header/header";
 import { Footer } from "../components/footer/footer";
 import { Logo } from "../components/logo/logo";
+import { PageMain } from "../components/page-main/page-main";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const AUTO_CLOSE_MS = 15000;
@@ -45,7 +46,7 @@ export default component$(() => {
   return (
     <div class="flex min-h-screen flex-col">
       <Header />
-      <main class="flex flex-1 items-center justify-center px-4 py-8 sm:px-8">
+      <PageMain class="items-center justify-center">
         <section class="flex w-full max-w-xl flex-col items-center gap-4 text-center sm:gap-5">
           <Logo size="xl" />
           <h1 class="font-display text-[48px] font-bold whitespace-nowrap text-[#ffffff]">
@@ -95,7 +96,7 @@ export default component$(() => {
             </Link>
           </p>
         </section>
-      </main>
+      </PageMain>
       <Footer />
 
       <dialog
