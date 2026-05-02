@@ -9,10 +9,12 @@
         - /jobs/[slug]
         - Privacy police
         - Not found
+    - Aprimorar estilização com: inspecionar > computed
     - Icones dos inputs
 - Descrição de todas as vagas
 - Deploy
 - Backend
+- Opção toggle de ver a awitlist como usuário/admin; como admin habilita a dashboard com métricas do site e também a opção de baixar um csv contendo essas métricas
 - Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
 - Toogle light/dark mode
 - Botão que leva a aplicação para o usuário jogar jogos no modo demo
@@ -32,6 +34,7 @@
     - Confirmação visual de cadastro de email
     - Tela com texto de politica de privacidade
     - Tela de not found
+    - Melhores mensagens para informar que o campo é required
 
 
 ## Desafios
@@ -39,6 +42,8 @@
 - Gradiente
 - Buscar fontes gratuitas parecidas com as pagas da waitlist original
 - Botão open positions
+- Estilização é um processo muito trabalhoso e buscar o pixel perfect dá trabalho
+- Estilização: comecei com o inspecionar
 
 
 
