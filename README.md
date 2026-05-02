@@ -2,6 +2,13 @@
 
 ## Backlog
 
+- Deploy frontend na Vercel
+- Enviar email de confirmacao de inscrição na waitlist/vagas
+- Opção toggle de ver a awitlist como usuário/admin; como admin habilita a dashboard com métricas do site e também a opção de baixar um csv contendo essas métricas
+- Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
+- Toogle light/dark mode
+- Botão que leva a aplicação para o usuário jogar jogos no modo demo
+- Validar páginas no mobile
 - Estilização
     - Home
     - /jobs
@@ -10,13 +17,6 @@
     - Not found
         - Aprimorar com: inspecionar > computed
 - Descrição de todas as vagas
-- Deploy
-- Backend
-- Opção toggle de ver a awitlist como usuário/admin; como admin habilita a dashboard com métricas do site e também a opção de baixar um csv contendo essas métricas
-- Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
-- Toogle light/dark mode
-- Botão que leva a aplicação para o usuário jogar jogos no modo demo
-- Validar páginas no mobile
 - Refatoração do projeto para padrões de qualidade
 
 
