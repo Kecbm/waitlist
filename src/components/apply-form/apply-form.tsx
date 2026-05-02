@@ -1,4 +1,5 @@
 import { component$, $, useSignal } from "@builder.io/qwik";
+import { globalAction$, z, zod$ } from "@builder.io/qwik-city";
 import {
   LuUploadCloud,
   LuUser,
@@ -7,17 +8,65 @@ import {
   LuArrowRight,
   LuX,
 } from "@qwikest/icons/lucide";
+import { getSupabase } from "../../lib/supabase";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const URL_REGEX = /^https?:\/\/.+/i;
 const MAX_RESUME_BYTES = 10 * 1024 * 1024;
 const AUTO_CLOSE_MS = 15000;
 
+export const useApplyToJob = globalAction$(
+  async (data, { fail, env }) => {
+    const supabase = getSupabase(env);
+
+    const fileName = `${crypto.randomUUID()}.pdf`;
+    const { error: uploadError } = await supabase.storage
+      .from("resumes")
+      .upload(fileName, data.resume, {
+        contentType: "application/pdf",
+      });
+    if (uploadError) {
+      return fail(500, { message: "Failed to upload resume." });
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("resumes")
+      .getPublicUrl(fileName);
+
+    const { error: dbError } = await supabase.from("job_applications").insert({
+      job_slug: data.jobSlug,
+      full_name: data.fullName,
+      email: data.email,
+      linkedin_url: data.linkedin,
+      resume_url: urlData.publicUrl,
+    });
+    if (dbError) {
+      return fail(500, {
+        message: "Something went wrong. Please try again.",
+      });
+    }
+
+    return { ok: true };
+  },
+  zod$({
+    jobSlug: z.string().min(1),
+    fullName: z.string().min(1),
+    email: z.string().email(),
+    linkedin: z.string().url(),
+    resume: z
+      .instanceof(File)
+      .refine((f) => f.type === "application/pdf", "Must be a PDF")
+      .refine((f) => f.size <= MAX_RESUME_BYTES, "Max 10MB"),
+  }),
+);
+
 type ApplyFormProps = {
   jobTitle?: string;
+  jobSlug?: string;
 };
 
-export const ApplyForm = component$<ApplyFormProps>(({ jobTitle }) => {
+export const ApplyForm = component$<ApplyFormProps>(({ jobTitle, jobSlug }) => {
+  const apply = useApplyToJob();
   const fullName = useSignal("");
   const email = useSignal("");
   const linkedin = useSignal("");
@@ -35,7 +84,7 @@ export const ApplyForm = component$<ApplyFormProps>(({ jobTitle }) => {
   const dialogRef = useSignal<HTMLDialogElement>();
   const closeTimeoutId = useSignal<number>();
 
-  const handleSubmit = $(() => {
+  const handleSubmit = $(async () => {
     const name = fullName.value.trim();
     const mail = email.value.trim();
     const link = linkedin.value.trim();
@@ -67,6 +116,21 @@ export const ApplyForm = component$<ApplyFormProps>(({ jobTitle }) => {
       errResume.value ||
       errConsent.value
     ) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("jobSlug", jobSlug ?? "");
+    formData.append("fullName", name);
+    formData.append("email", mail);
+    formData.append("linkedin", link);
+    formData.append("resume", resumeFile.value!);
+
+    const { value: result } = await apply.submit(formData);
+    if (result.failed) {
+      errResume.value =
+        (result as { message?: string }).message ??
+        "Something went wrong. Please try again.";
       return;
     }
 
@@ -261,7 +325,8 @@ export const ApplyForm = component$<ApplyFormProps>(({ jobTitle }) => {
 
         <button
           type="submit"
-          class="font-ui flex h-10 w-[126.5px] items-center justify-center gap-1.5 rounded-full border-[3px] border-white/12 bg-[#7a5af8] px-3 py-2 text-[14px] text-white"
+          disabled={apply.isRunning}
+          class="font-ui flex h-10 w-[126.5px] items-center justify-center gap-1.5 rounded-full border-[3px] border-white/12 bg-[#7a5af8] px-3 py-2 text-[14px] text-white disabled:cursor-not-allowed disabled:opacity-60"
         >
           <span class="px-0.5 font-semibold">Apply now</span>
           <LuArrowRight />
