@@ -121,7 +121,7 @@ export default component$(() => {
           </article>
 
           <div class="lg:col-span-1">
-            <ApplyForm jobTitle={position.title} />
+            <ApplyForm jobTitle={position.title} jobSlug={position.slug} />
           </div>
         </div>
       </PageMain>
