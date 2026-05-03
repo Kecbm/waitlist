@@ -1,12 +1,12 @@
 # Waitlist
 
+Deploy na Vercel e Supabase: https://waitlisthighstack.vercel.app/
+
 ## Backlog
 
-- Deploy frontend na Vercel
 - Enviar email de confirmacao de inscrição na waitlist/vagas
 - Opção toggle de ver a awitlist como usuário/admin; como admin habilita a dashboard com métricas do site e também a opção de baixar um csv contendo essas métricas
 - Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
-- Toogle light/dark mode
 - Botão que leva a aplicação para o usuário jogar jogos no modo demo
 - Validar páginas no mobile
 - Estilização
@@ -18,6 +18,7 @@
         - Aprimorar com: inspecionar > computed
 - Descrição de todas as vagas
 - Refatoração do projeto para padrões de qualidade
+- Toogle light/dark mode
 
 
 ## Finalizar
@@ -111,3 +112,47 @@ The production build will generate client and server modules by running both cli
 ```shell
 npm run build # or `yarn build`
 ```
+
+## Vercel Edge
+
+This starter site is configured to deploy to [Vercel Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions), which means it will be rendered at an edge location near to your users.
+
+## Installation
+
+The adaptor will add a new `vite.config.ts` within the `adapters/` directory, and a new entry file will be created, such as:
+
+```
+└── adapters/
+    └── vercel-edge/
+        └── vite.config.ts
+└── src/
+    └── entry.vercel-edge.tsx
+```
+
+Additionally, within the `package.json`, the `build.server` script will be updated with the Vercel Edge build.
+
+## Production build
+
+To build the application for production, use the `build` command, this command will automatically run `npm run build.server` and `npm run build.client`:
+
+```shell
+npm run build
+```
+
+[Read the full guide here](https://github.com/QwikDev/qwik/blob/main/starters/adapters/vercel-edge/README.md)
+
+## Dev deploy
+
+To deploy the application for development:
+
+```shell
+npm run deploy
+```
+
+Notice that you might need a [Vercel account](https://docs.Vercel.com/get-started/) in order to complete this step!
+
+## Production deploy
+
+The project is ready to be deployed to Vercel. However, you will need to create a git repository and push the code to it.
+
+You can [deploy your site to Vercel](https://vercel.com/docs/concepts/deployments/overview) either via a Git provider integration or through the Vercel CLI.
