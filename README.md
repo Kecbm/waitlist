@@ -4,8 +4,7 @@ Deploy na Vercel e Supabase: https://waitlisthighstack.vercel.app/
 
 ## Backlog
 
-- Enviar email de confirmacao de inscrição na waitlist/vagas
-- Opção toggle de ver a awitlist como usuário/admin; como admin habilita a dashboard com métricas do site e também a opção de baixar um csv contendo essas métricas
+- Cadastrar dados de teste na waitlist e nos jobs apply para métrica de teste (apply: grandes nomes da tecnologia)
 - Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
 - Botão que leva a aplicação para o usuário jogar jogos no modo demo
 - Validar páginas no mobile
@@ -19,6 +18,7 @@ Deploy na Vercel e Supabase: https://waitlisthighstack.vercel.app/
 - Descrição de todas as vagas
 - Refatoração do projeto para padrões de qualidade
 - Toogle light/dark mode
+- Enviar email de confirmação de inscrição na waitlist/vagas
 
 
 ## Finalizar
