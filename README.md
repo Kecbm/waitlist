@@ -24,6 +24,7 @@ Deploy na Vercel e Supabase: https://waitlisthighstack.vercel.app/
 ## Finalizar
 
 - Estudar como o projeto funciona em Qwik para poder apresentar, montar apresentação e por fim fazer a demo direto na url de deploy
+- Luiz Froes: guiar passo a passo em como foi desenvolvido a aplicação
 
 
 ## Melhorias
