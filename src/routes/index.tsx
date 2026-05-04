@@ -132,7 +132,7 @@ export default component$(() => {
             )}
           </form>
           <a
-            href="https://igamedemo.vercel.app/"
+            href="https://highstackdemo.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             class="font-ui btn-demo my-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[16px] font-semibold text-[#ffffff] transition-transform hover:scale-105 sm:my-6"
