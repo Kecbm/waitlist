@@ -6,7 +6,7 @@ import {
   zod$,
   type DocumentHead,
 } from "@builder.io/qwik-city";
-import { LuMail, LuX } from "@qwikest/icons/lucide";
+import { LuMail, LuPlay, LuX } from "@qwikest/icons/lucide";
 import { Header } from "../components/header/header";
 import { Footer } from "../components/footer/footer";
 import { Logo } from "../components/logo/logo";
@@ -131,6 +131,15 @@ export default component$(() => {
               </p>
             )}
           </form>
+          <a
+            href="https://igamedemo.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-ui btn-demo my-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[16px] font-semibold text-[#ffffff] transition-transform hover:scale-105 sm:my-6"
+          >
+            <LuPlay />
+            Play Demo Now!
+          </a>
           <p class="font-ui text-[14px] text-[#94979c]">
             We care about your data. See our{" "}
             <Link href="/privacy-policy" class="underline">
