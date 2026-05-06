@@ -1,4 +1,4 @@
-# Highstack Waitlist
+# 🎮 Highstack Waitlist
 
 Full-stack waitlist & job board built with `Qwik City`, `Supabase` and deployed on `Vercel Edge`.
 
