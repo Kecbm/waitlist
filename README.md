@@ -54,17 +54,17 @@ Built from scratch in ~1 week, end-to-end (setup → deploy).
 
 ## 🛠 Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | [Qwik](https://qwik.dev/) + Qwik City |
-| Styling | [Tailwind CSS 4](https://tailwindcss.com/) (CSS-first, no config file) |
-| Database & Storage | [Supabase](https://supabase.com/) (Postgres + Object Storage) |
-| Authentication | Cookie HTTP-only + SHA-256 (Web Crypto API) |
-| Telemetry | [Vercel Analytics](https://vercel.com/analytics) + Speed Insights |
-| Icons | [`@qwikest/icons`](https://www.npmjs.com/package/@qwikest/icons) (Lucide) |
-| Hosting | [Vercel Edge Functions](https://vercel.com/docs/functions) |
-| Language | TypeScript |
-| Build tool | Vite 7 |
+| Layer | Technology | Icon |
+|---|---|---|
+| Framework | [Qwik](https://qwik.dev/) + Qwik City | <img src="https://cdn.simpleicons.org/qwik" width="24" alt="Qwik" /> |
+| Styling | [Tailwind CSS 4](https://tailwindcss.com/) (CSS-first, no config file) | <img src="https://cdn.simpleicons.org/tailwindcss" width="24" alt="Tailwind CSS" /> |
+| Database & Storage | [Supabase](https://supabase.com/) (Postgres + Object Storage) | <img src="https://cdn.simpleicons.org/supabase" width="24" alt="Supabase" /> |
+| Authentication | Cookie HTTP-only + SHA-256 (Web Crypto API) | 🔐 |
+| Telemetry | [Vercel Analytics](https://vercel.com/analytics) + Speed Insights | <img src="https://cdn.simpleicons.org/vercel" width="24" alt="Vercel" /> |
+| Icons | [`@qwikest/icons`](https://www.npmjs.com/package/@qwikest/icons) (Lucide) | <img src="https://cdn.simpleicons.org/lucide" width="24" alt="Lucide" /> |
+| Hosting | [Vercel Edge Functions](https://vercel.com/docs/functions) | <img src="https://cdn.simpleicons.org/vercel" width="24" alt="Vercel" /> |
+| Language | TypeScript | <img src="https://cdn.simpleicons.org/typescript" width="24" alt="TypeScript" /> |
+| Build tool | Vite 7 | <img src="https://cdn.simpleicons.org/vite" width="24" alt="Vite" /> |
 
 ---
 
