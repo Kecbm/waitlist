@@ -1,159 +1,196 @@
-# Waitlist
+# Highstack Waitlist
 
-Deploy na Vercel e Supabase: https://waitlisthighstack.vercel.app/
+Full-stack waitlist & job board built with `Qwik City`, `Supabase` and deployed on `Vercel Edge`.
 
-## Backlog
-
-- Cadastrar dados de teste na waitlist e nos jobs apply para métrica de teste (apply: grandes nomes da tecnologia)
-- Demo com os jogos já desenvolvidos (salvar as coisas em localhost porque é demo não precisa de db nesse caso)
-- Botão que leva a aplicação para o usuário jogar jogos no modo demo
-- Validar páginas no mobile
-- Estilização
-    - Home
-    - /jobs
-    - /jobs/[slug]
-    - Privacy police
-    - Not found
-        - Aprimorar com: inspecionar > computed
-- Descrição de todas as vagas
-- Refatoração do projeto para padrões de qualidade
-- Toogle light/dark mode
-- Enviar email de confirmação de inscrição na waitlist/vagas
-
-
-## Finalizar
-
-- Estudar como o projeto funciona em Qwik para poder apresentar, montar apresentação e por fim fazer a demo direto na url de deploy
-- Luiz Froes: guiar passo a passo em como foi desenvolvido a aplicação
-
-
-## Melhorias
-
-- O que não tem na waitlist original
-    - Redes sociais da empresa no Footer (LinkedIn: https://www.linkedin.com/company/highstackcasino/)
-    - Campo email não padronizado entre home e página de detalhe de uma posição
-    - Confirmação visual de cadastro de email
-    - Tela com texto de politica de privacidade
-    - Tela de not found
-    - Melhores mensagens para informar que o campo é required
-
-
-## Desafios
-
-- Gradiente
-- Buscar fontes gratuitas parecidas com as pagas da waitlist original
-- Botão open positions
-- Estilização é um processo muito trabalhoso e buscar o pixel perfect dá trabalho
-- Estilização: comecei com o inspecionar
-
-
-
-# Qwik City App ⚡️
-
-- [Qwik Docs](https://qwik.dev/)
-- [Discord](https://qwik.dev/chat)
-- [Qwik GitHub](https://github.com/QwikDev/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
+🌐 **Live demo:** https://waitlisthighstack.vercel.app/
 
 ---
 
-## Project Structure
+## 📑 Table of Contents
 
-This project is using Qwik with [QwikCity](https://qwik.dev/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
+1. [Overview](#-overview)
+2. [Features](#-features)
+3. [Tech Stack](#-tech-stack)
+4. [Project Structure](#-project-structure)
+5. [Running Locally](#-running-locally)
+6. [Deployment](#-deployment)
+7. [Improvements over the Original Waitlist](#-improvements-over-the-original-waitlist)
+8. [Challenges Faced](#-challenges-faced)
+9. [Backlog](#-backlog)
+10. [Author](#-author)
 
-Inside your project, you'll see the following directory structure:
+---
+
+## 🎯 Overview
+
+Production-ready full-stack application that captures user emails for a product
+waitlist and powers a job board with PDF résumé uploads. It comes with a
+protected admin dashboard for real-time business metrics and CSV export.
+
+Built from scratch in ~1 week, end-to-end (setup → deploy).
+
+---
+
+## ✨ Features
+
+### Public site
+
+- 📧 Waitlist signup with native `HTML5` confirmation dialog (auto-close in 15s)
+- 💼 Job board with 19 positions, instant search and filter-by-tag
+- 🔗 Shareable deeplinks — filters live in the URL (`/jobs?q=engineer&tag=Engineering`)
+- 📄 Job application form with PDF résumé upload (10 MB max)
+- 🔒 Privacy Policy and custom 404 pages
+- ♿ Accessibility-first (`prefers-reduced-motion`, semantic HTML, keyboard navigation)
+
+### Admin dashboard (`/admin`)
+
+- 🔐 Cookie-based authentication (HTTP-only, SHA-256 via Web Crypto API)
+- 📊 Real-time KPIs: total signups, total applications, last 7 days
+- 📋 Recent waitlist signups and recent applications tables
+- 📥 One-click CSV export (all rows, Excel-compatible)
+- 🚀 6 parallel database queries — no waterfalls, no loading states
+
+---
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | [Qwik](https://qwik.dev/) + Qwik City |
+| Styling | [Tailwind CSS 4](https://tailwindcss.com/) (CSS-first, no config file) |
+| Database & Storage | [Supabase](https://supabase.com/) (Postgres + Object Storage) |
+| Authentication | Cookie HTTP-only + SHA-256 (Web Crypto API) |
+| Telemetry | [Vercel Analytics](https://vercel.com/analytics) + Speed Insights |
+| Icons | [`@qwikest/icons`](https://www.npmjs.com/package/@qwikest/icons) (Lucide) |
+| Hosting | [Vercel Edge Functions](https://vercel.com/docs/functions) |
+| Language | TypeScript |
+| Build tool | Vite 7 |
+
+---
+
+## 📁 Project Structure
 
 ```
-├── public/
-│   └── ...
+├── adapters/
+│   └── vercel-edge/         # Vercel Edge build adapter
+├── public/                  # Static assets
 └── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
+    ├── components/          # Reusable UI components
+    ├── lib/                 # Supabase client, admin auth helpers
+    ├── routes/
+    │   ├── (admin)/         # Protected admin route group
+    │   ├── jobs/            # Job board (list + [slug] detail)
+    │   ├── privacy-policy/
+    │   └── index.tsx        # Home (waitlist)
+    ├── entry.ssr.tsx
+    ├── entry.vercel-edge.tsx
+    ├── global.css           # Tailwind 4 entry + @theme tokens
+    └── root.tsx
 ```
 
-- `src/routes`: Provides the directory-based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.dev/qwikcity/routing/overview/) for more info.
+---
 
-- `src/components`: Recommended directory for components.
+## 🚀 Running Locally
 
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
+### Prerequisites
 
-## Add Integrations and deployment
+- Node.js `^18.17` or `^20.3` or `>=21`
+- npm (or pnpm/yarn)
+- A [Supabase](https://supabase.com/) project (free tier is enough)
 
-Use the `npm run qwik add` command to add additional integrations. Some examples of integrations includes: Cloudflare, Netlify or Express Server, and the [Static Site Generator (SSG)](https://qwik.dev/qwikcity/guides/static-site-generation/).
+### Setup
 
-```shell
-npm run qwik add # or `yarn qwik add`
-```
+1. **Clone the repo**
+   ```shell
+   git clone <repo-url> && cd waitlist
+   ```
 
-## Development
+2. **Install dependencies**
+   ```shell
+   npm install
+   ```
 
-Development mode uses [Vite's development server](https://vitejs.dev/). The `dev` command will server-side render (SSR) the output during development.
+3. **Create `.env.local`** at the project root (use `.env.example` as reference):
+   ```env
+   SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   ADMIN_PASSWORD=your-strong-password
+   VERCEL_PROJECT_URL=https://vercel.com/your-username/your-project
+   ```
 
-```shell
-npm start # or `yarn start`
-```
+4. **Set up Supabase:**
+   - Create two tables: `waitlist_signups` and `job_applications`
+   - Create a public Storage bucket named `resumes`
 
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
+5. **Run the dev server**
+   ```shell
+   npm start
+   ```
+   The site will open at `http://localhost:5173`.
 
-## Preview
+### Available Scripts
 
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to preview a production build locally and should not be used as a production server.
+| Command | Description |
+|---|---|
+| `npm start` | Start the dev server (SSR mode) with HMR |
+| `npm run build` | Production build (client + server) |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint on `src/**/*.ts*` |
+| `npm run fmt` | Format the codebase with Prettier |
+| `npm run deploy` | Deploy to Vercel via the Vercel CLI |
 
-```shell
-npm run preview # or `yarn preview`
-```
+---
 
-## Production
+## ☁️ Deployment
 
-The production build will generate client and server modules by running both client and server build commands. The build command will use Typescript to run a type check on the source code.
+The project is deployed on **Vercel Edge Functions** (V8 isolates that run
+geographically close to each user, with near-zero cold start).
 
-```shell
-npm run build # or `yarn build`
-```
+### Required environment variables (set in Vercel dashboard)
 
-## Vercel Edge
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `ADMIN_PASSWORD`
+- `VERCEL_PROJECT_URL`
 
-This starter site is configured to deploy to [Vercel Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions), which means it will be rendered at an edge location near to your users.
+### Deploy options
 
-## Installation
+- **Git integration (recommended):** push to your repo connected to Vercel — every push triggers an automatic deploy.
+- **CLI:**
+  ```shell
+  npm run deploy
+  ```
 
-The adaptor will add a new `vite.config.ts` within the `adapters/` directory, and a new entry file will be created, such as:
+The build command is `npm run build`, which runs both the client build (Vite) and the server build (Vercel Edge adapter).
 
-```
-└── adapters/
-    └── vercel-edge/
-        └── vite.config.ts
-└── src/
-    └── entry.vercel-edge.tsx
-```
+---
 
-Additionally, within the `package.json`, the `build.server` script will be updated with the Vercel Edge build.
+## 🌟 Improvements over the Original Waitlist
 
-## Production build
+- 🔗 Footer with company social links (LinkedIn)
+- 📧 Email field standardized between home and job application form
+- ✅ Visual confirmation after signup (native `<dialog>`)
+- 🚫 Custom Not Found page (instead of the default 404)
+- 💬 Clearer required-field validation messages
 
-To build the application for production, use the `build` command, this command will automatically run `npm run build.server` and `npm run build.client`:
+---
 
-```shell
-npm run build
-```
+## 🧗 Challenges Faced
 
-[Read the full guide here](https://github.com/QwikDev/qwik/blob/main/starters/adapters/vercel-edge/README.md)
+- 🎨 **Background gradient** — replicating the original purple radial took multiple `radial-gradient()` layers via a CSS custom property
+- 🔤 **Premium fonts** in the original — substituted with **Inter** + **Geist** (free on Google Fonts, visually close)
+- 📐 **Pixel-perfect styling** is hard — moved from the "Inspect" to the "Computed" tab in DevTools to extract exact values
 
-## Dev deploy
+---
 
-To deploy the application for development:
+## 🚧 Backlog
 
-```shell
-npm run deploy
-```
+- Mobile validation across all 5 pages
+- Final styling polish: Home, `/jobs`, `/jobs/[slug]`, Privacy Policy, Not Found
+- Confirmation email after waitlist signup / job application
 
-Notice that you might need a [Vercel account](https://docs.Vercel.com/get-started/) in order to complete this step!
+---
 
-## Production deploy
+## 👤 Author
 
-The project is ready to be deployed to Vercel. However, you will need to create a git repository and push the code to it.
-
-You can [deploy your site to Vercel](https://vercel.com/docs/concepts/deployments/overview) either via a Git provider integration or through the Vercel CLI.
+Built by **Klecianny Melo** — [GitHub](https://github.com/Kecbm) · [LinkedIn](https://www.linkedin.com/in/kleciannymelo/)
